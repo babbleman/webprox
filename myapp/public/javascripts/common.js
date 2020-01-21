@@ -37,6 +37,7 @@ class Board{
         document.getElementById(10*i+j).style.background=color;
     }}
 
+
 }
 
     isavailable(arr){
@@ -145,7 +146,7 @@ class Board{
         }}
       }
       this.turnchange();
-      setTimeout(this.drawboard(),1000);
+      this.drawboard()
       // this.randomput()
 
 
