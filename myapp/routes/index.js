@@ -8,5 +8,16 @@ router.get('/', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express',Board:b});
 });
+router.get('/db',async(req,res)=>{
+  try{
+    const client=await pool.connect()
+    const result=await client. query('select * from users');
+    const results={'results':(result)? result.rows: null}
+    res.render('/db',results);
+  }catch(err){
+    console.error(err);
+    res.send("Error"+err)
+  }
+})
 
 module.exports = router;

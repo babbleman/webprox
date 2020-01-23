@@ -1,14 +1,16 @@
-var Pg= require('pg-pool');
-const pg=new Pg({
-database:'d8j1jndcuogbgu',
-user:'zhrmwkgtdknttd',
-password:'19f0585b36e273fc87813acdb28d443cecf2576138eccef959f6814987af9452',
-host:'ec2-52-55-59-250.compute-1.amazonaws.com',
-port:'5432',
-});
+const { Client } = require('pg');
 
-pg.connect();
-var query="select * from users"
-pg.query(query)
-  .then(res => console.log(res.rows[0]))
-  .catch(e => console.error(e.stack))
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+console.log(process.env.DATABASE_URL);
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
