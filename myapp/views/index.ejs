@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <div id=headermenu>
-      <center><input type=text></center>
-      <br>
-      <center><input type =text></center>
-      <br>
-    <center>  <input type="button" value="登録"</button></center>
-
-    </div>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script type="text/javascript" src="/javascripts/common.js"></script>
@@ -18,9 +10,8 @@
   </head>
   <body>
     <center><h1><%= title %></h1></center>
-    <p>Welcome to <%= title %></p>
+    <p>オセロしようぜ！</p>
     <center>
-      <span class=boaddraw>
     <% for(var i=0;i<8;i++){%>
     <% for(var j=0;j<8;j++){%>
       <a class=board href=javascript:board.check(<%= 10*i+j %>);><span class=stone id=<%= 10*i+j%>></span></a>
@@ -28,8 +19,6 @@
       <br>
       <%}%>
               <center><a href=javascript:board.drawboard() class="btn-gradient-3d">start</a></center>
-      </span>
-
     </center>
 <br>
 
