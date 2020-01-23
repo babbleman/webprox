@@ -1,76 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <div id=headermenu>
-      <center><input type=text></center>
-      <br>
-      <center><input type =text></center>
-      <br>
-    <center>  <input type="button" value="登録"</button></center>
-
-    </div>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script type="text/javascript" src="/javascripts/common.js"></script>
-    <script type="text/javascript">
-    var board=new Board(8);
-    </script>
+        <link rel='stylesheet' href='/stylesheets/header.css' />
+    <meta charset="utf-8">
+    <title></title>
   </head>
   <body>
-    <center><h1><%= title %></h1></center>
-    <p>Welcome to <%= title %></p>
-    <center>
-      <span class=boaddraw>
-    <% for(var i=0;i<8;i++){%>
-    <% for(var j=0;j<8;j++){%>
-      <a class=board href=javascript:board.check(<%= 10*i+j %>);><span class=stone id=<%= 10*i+j%>></span></a>
-      <%}%>
-      <br>
-      <%}%>
-              <center><a href=javascript:board.drawboard() class="btn-gradient-3d">start</a></center>
-      </span>
-
-    </center>
-<br>
-
-
-<div id="o" style="display:block"<h3>Visibility:hidden</h3></div>
-<input type=button value="こんにちは" onclick=javascript:changedisplay()>
-
-<font color=blue size=50>
-which color do you want to choose?
-</font>
-<br>
-<input type=button value="青っぽいやつ" onclick=javascript:changedisplay("red")>
-<br>
-<input type=button value="赤っぽいやつ" onclick=javascript:changedisplay("blue")>
-<br>
-<input type=button value="黄色っぽいやつ" onclick=javascript:changedisplay("black")>
-
-<div id=blue>
-<table border=1>
-aaaaaaaaaaaaaaaaaaaaaaaaa
-</table></div>
-<div id=red>ひよこだぜええええ<br>鶏になりそうだぜ</div>
-<div id=black>なんてこったい</div>
-
-
-
-<script>
-
-
-function changedisplay(color){
-
-  var arr=["blue","red","black"]
-  for(var i=0;i<arr.length;i++){
-    var displaystatus="none"
-    if (color==arr[i]){
-      displaystatus="block"
-    }
-    document.getElementById(arr[i]).style.display=displaystatus
-
-}
-}
-</script>
+<form class="box" action="index.html" method="post">
+  <h1>Login</h1>
+  <input type="text" name="" placeholder="username">
+    <input type="password" name="" placeholder="password">
+    <input type="submit" name="" value="Login">
+</form>
   </body>
 </html>

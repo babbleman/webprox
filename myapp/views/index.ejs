@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= title %></title>
+    <a href="/login">ログインページ</a>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script type="text/javascript" src="/javascripts/common.js"></script>
     <script type="text/javascript">
@@ -34,7 +35,7 @@ which color do you want to choose?
 <br>
 <input type=button value="赤っぽいやつ" onclick=javascript:changedisplay("blue")>
 <br>
-<input type=button value="黄色っぽいやつ" onclick=javascript:changedisplay("black")>
+<input type=button value="黄色っぽいやつ" class="oo">
 
 <div id=blue>
 <table border=1>
@@ -44,7 +45,12 @@ aaaaaaaaaaaaaaaaaaaaaaaaa
 <div id=black>なんてこったい</div>
 
 
-
+<input type=button class="oo">
+<script type="text/javascript">
+  $('.oo').click(function(){
+    $('#red'),toggle(1000);
+  })
+</script>
 <script>
 
 
@@ -61,5 +67,6 @@ function changedisplay(color){
 }
 }
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </body>
 </html>
