@@ -146,8 +146,8 @@ class Board{
         }}
       }
       this.turnchange();
-      this.drawboard()
-      // this.randomput()
+      this.drawboard();
+
 
 
     }
@@ -164,18 +164,18 @@ class Board{
     }
 
     randomput(){
-      var arr=this.searchavailavle()
+      var arr=this.searchavailavle();
       var randnum =  Math.floor( Math.random() * arr.length )
       console.log(arr);
-      this.putstone(arr[randnum])
+      this.putstone(arr[randnum])}
 
-    }
+
 
     check(id){
       var y=parseInt(id/10)
       var x=id%10
       this.putstone([y,x])
-      this.randomput();
+      setTimeout(()=>this.randomput(),500);
     }
 
 }
@@ -186,7 +186,6 @@ function sleep(waitMsec) {
   while (new Date() - startMsec < waitMsec);
 }
 
-// var x=new Board(8);
-// x.putstone([2,4])
-// x.randomput()
-// x.randomput()
+var x=new Board(8);
+x.check(24)
+console.log(x.board);
