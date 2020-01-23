@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var pool=require('pg-pool');
 var b=require('../classfiles/board.js')
 /* GET home page. */
 router.get('/', function(req, res, next) {
