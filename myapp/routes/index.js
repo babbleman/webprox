@@ -28,12 +28,21 @@ router.get('/', function(req, res, next) {
 //     res.send("Error"+err)
 //   }
 // })
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
+
+// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
+
+router.get('/db',(req, res, next)=>{
+  client.query('SELECT * from users', (err, res) => {
+    if (err) throw err;
+    res.render('/db',result)
+    });
+}
+)
 
 module.exports = router;
