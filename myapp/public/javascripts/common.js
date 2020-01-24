@@ -3,6 +3,7 @@
 
 class Board{
   constructor(size){
+    this.ongame=false
     this.size=size
     this.turn=1
     this.pss=0
@@ -157,7 +158,7 @@ class Board{
       }
       this.pss=0
       this.turnchange();
-      this.drawboard();
+
 
 
 
@@ -176,10 +177,30 @@ class Board{
 
     randomput(){
       var arr=this.searchavailavle();
+      if(arr.length==0){
+        this.pss+=1
+        return
+      }
       var randnum =  Math.floor( Math.random() * arr.length )
       console.log(arr);
       this.putstone(arr[randnum])}
 
+      turnavailable(){
+        if(this.searchavailavle.length==0){
+          return false
+        }
+        return true
+      }
+
+      nonezero(){
+        for(var i=0;i<this.size;i++){
+        for(var j=0;j<this.size;j++){
+          if(this.board[i][j]==0){
+            return true
+          }
+        }}
+        return false
+      }
 
 
     check(id){
@@ -187,8 +208,43 @@ class Board{
       var x=id%10
       if(this.isavailable([y,x])){
       this.putstone([y,x])
+      this.drawboard();
+      if(this.searchavailavle().length!=0){
       setTimeout(()=>this.randomput(),500);
+      setTimeout(()=>this.drawboard(),501);
+      while (true) {
+        if(this.turnavailable()||this.nonezero()){
+          break
+        }
+        this.turnchange();
+        if (this.turnavailable==false){
+          break
+        }
+        setTimeout(()=>this.randomput(),500);
+        setTimeout(()=>this.drawboard(),501);
+      }
+    }
+    else{
+      this.turnchange()
+    this.drawboard();
+    }
+
     }}
+    reset(){
+      for(var i=0;i<this.size;i++){
+      for(var j=0;j<this.size;j++){
+        this.board[i][j]=0
+      }
+    }
+
+    var x=parseInt(this.size/2);
+    this.board[x-1][x-1]=1;
+    this.board[x][x]=1;
+    this.board[x-1][x]=2;
+    this.board[x][x-1]=2;
+      this.drawboard()
+
+    }
 
     endcheck(){
       if(this.pss==2){
