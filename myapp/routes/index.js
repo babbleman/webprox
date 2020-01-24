@@ -3,11 +3,14 @@ var router = express.Router();
 var pool=require('pg-pool');
 var b=require('../classfiles/board.js')
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/othello', function(req, res, next) {
   res.render('index', { title: 'Express',Board:b});
 });
 router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express',Board:b});
+});
+router.get('/', function(req, res, next) {
+  res.render('top');
 });
 router.get('/db',async(req,res)=>{
   try{

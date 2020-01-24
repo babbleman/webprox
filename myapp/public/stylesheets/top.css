@@ -1,0 +1,23 @@
+
+#header{
+  background: #C00;
+  padding:10px;
+}
+
+#header>h1{
+  color: #FFF;
+  font-family: serif;
+  margin: 0;
+}
+
+#main{
+  border: 1px solid #CCC;
+  margin: 0 auto;
+  padding: 10px;
+  width:80%;
+}
+
+#main>h2{
+  border-left: 5px solid #C00;
+  margin-left: 20px;
+}
