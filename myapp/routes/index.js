@@ -37,12 +37,20 @@ router.get('/', function(req, res, next) {
 //   client.end();
 // });
 
-router.get('/db',(req, res, next)=>{
-  client.query('SELECT * from users', (err, res) => {
-    if (err) throw err;
-    res.render('db',result)
-    });
-}
-)
+// router.get('/db',(req, res, next)=>{
+//   client.query('SELECT * from users', (err, res) => {
+//     if (err) throw err;
+//     res.render('db',result)
+//     });
+// }
+// )
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
 
 module.exports = router;
