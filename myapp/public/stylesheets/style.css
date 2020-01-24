@@ -105,8 +105,16 @@ clear: both;
   border-left: 10px solid red;
 }
 
-
-
+.title{
+  background-color: #C00;
+  padding:10px;
+  margin-top: 100px;
+}
+.title>h1{
+  color: #FFF;
+  font-family: serif;
+  margin: 0
+}
 
 
 

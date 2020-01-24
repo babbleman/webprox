@@ -2,10 +2,10 @@
 <html>
   <head>
         <div class=menu>
-          <a class=content href=javascript:changescreen("func")>トップ</li>
-          <a class=content href=javascript:changescreen("func")>機能紹介</li>
-          <a class=content href=javascript:changescreen("othello")>オセロ</li>
-            <a class=content href=javascript:changescreen("login")><h2>ログアウト</h2></li>
+          <a class=content href=javascript:changescreen("top")>トップ</a>
+          <a class=content href=javascript:changescreen("func")>機能紹介</a>
+          <a class=content href=javascript:changescreen("othello")>オセロ</a>
+            <a class=content href=javascript:changescreen("login")>ログアウト</a>
         </div>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -37,55 +37,8 @@
 which color do you want to choose?
 </font>
 <br>
-<input type=button value="青っぽいやつ" onclick=javascript:changedisplay("red")>
-<br>
-<input type=button value="赤っぽいやつ" onclick=javascript:changedisplay("blue")>
-<br>
-<input type=button value="黄色っぽいやつ" class="oo">
-
-<div id=blue>
-<table border=1>
-aaaaaaaaaaaaaaaaaaaaaaaaa
-</table></div>
-<div id=red>ひよこだぜええええ<br>鶏になりそうだぜ</div>
-<div id=black>なんてこったい</div>
 
 
-<input type=button class="oo">
-<script type="text/javascript">
-  $('.oo').click(function(){
-    $('#red'),toggle(1000);
-  })
-</script>
-<script>
-
-
-function changedisplay(color){
-
-  var arr=["blue","red","black"]
-  for(var i=0;i<arr.length;i++){
-    var displaystatus="none"
-    if (color==arr[i]){
-      displaystatus="block"
-    }
-    document.getElementById(arr[i]).style.display=displaystatus
-
-}
-}
-</script>
-</div>
-<script type="text/javascript">
-  function changescreen(content){
-    if(document.getElementById(content).style.display=="none"){
-      document.getElementById(content).style.display="block"
-    }
-    else{
-      document.getElementById(content).style.display="none"
-    }
-  }
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 <div class=logo>
 <h1>
   <em>T</em>
@@ -95,6 +48,35 @@ function changedisplay(color){
   <em class="planet right">A</em>
   <em>Y</em>
 </h1>
+</div>
+</div>
+<script type="text/javascript">
+  function changescreen(content){
+    var arr=["top","othello","func","login"]
+    for(var i=0;i<arr.length;i++){
+      if(arr[i]==content){
+      document.getElementById(arr[i]).style.display="block"
+    }
+    else{
+      document.getElementById(arr[i]).style.display="none"
+    }
+  }}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+
+
+
+<div class="func">
+
+</div>
+<div class="login">
+
+</div>
+<div id="top">
+  <div class="title">
+    <h1>ようこそいらっしゃい</h1>
+  </div>
 </div>
   </body>
 </html>
