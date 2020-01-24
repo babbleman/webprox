@@ -19,5 +19,21 @@
 
 #main>h2{
   border-left: 5px solid #C00;
-  margin-left: 20px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+#main>p{
+  font-size: 14px;
+  margin: 10px 25px;
+}
+
+#footer{
+  margin: 10px;
+  text-align: center;
+}
+
+#footer>p{
+  color: #600;
+  font-size: 12px;
 }
