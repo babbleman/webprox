@@ -2,13 +2,12 @@
 <html>
   <head>
         <div class=menu>
-          <li>トップ</li>
-          <li>機能紹介</li>
-          <li>オセロ</li>
-          <li>ログアウト</li>
+          <a class=content href=javascript:changescreen("func")>トップ</li>
+          <a class=content href=javascript:changescreen("func")>機能紹介</li>
+          <a class=content href=javascript:changescreen("othello")>オセロ</li>
+            <a class=content href=javascript:changescreen("login")><h2>ログアウト</h2></li>
         </div>
     <title><%= title %></title>
-    <a href="/login">ログインページ</a>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script type="text/javascript" src="/javascripts/common.js"></script>
     <script type="text/javascript">
@@ -16,8 +15,9 @@
     </script>
   </head>
   <body>
+    <div id="othello">
     <center><h1><%= title %></h1></center>
-    <p>オセロしようぜ！</p>
+    <p>宇宙感覚のオセロへ</p>
     <center>
     <% for(var i=0;i<8;i++){%>
     <% for(var j=0;j<8;j++){%>
@@ -73,6 +73,28 @@ function changedisplay(color){
 }
 }
 </script>
+</div>
+<script type="text/javascript">
+  function changescreen(content){
+    if(document.getElementById(content).style.display=="none"){
+      document.getElementById(content).style.display="block"
+    }
+    else{
+      document.getElementById(content).style.display="none"
+    }
+  }
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+<div class=logo>
+<h1>
+  <em>T</em>
+  <em class="planet left">A</em>
+  <em></em>
+  <em>K</em>
+  <em class="planet right">A</em>
+  <em>Y</em>
+</h1>
+</div>
   </body>
 </html>
