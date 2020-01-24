@@ -5,6 +5,7 @@ class Board{
   constructor(size){
     this.size=size
     this.turn=1
+    this.pss=0
     this.board=[];
     this.direction=[[-1,-1],[0,-1],[1,-1],[-1,0],[1,0],[-1,1],[0,1],[1,1]]
     for(var i=0;i<size;i++){
@@ -35,9 +36,18 @@ class Board{
         color="green";
       }
         document.getElementById(10*i+j).style.background=color;
+        document.getElementById(100*(i+1)+j).style.opacity=1;
     }}
+    if(this.turn==1){
+    var arr=this.searchavailavle();
 
+    for(var i=0;i<arr.length;i++){
+      var x=arr[i][0];
+      var y=arr[i][1];
+      document.getElementById(100*(x+1)+y).style.opacity=0.7;
 
+    }
+}
 }
 
     isavailable(arr){
@@ -145,6 +155,7 @@ class Board{
           this.board[arr[j][0]][arr[j][1]]=this.turn;
         }}
       }
+      this.pss=0
       this.turnchange();
       this.drawboard();
 
@@ -174,8 +185,16 @@ class Board{
     check(id){
       var y=parseInt(id/10)
       var x=id%10
+      if(this.isavailable([y,x])){
       this.putstone([y,x])
       setTimeout(()=>this.randomput(),500);
+    }}
+
+    endcheck(){
+      if(this.pss==2){
+        return true
+      }
+      return false
     }
 
 }

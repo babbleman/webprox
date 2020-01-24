@@ -15,7 +15,7 @@
     <center>
     <% for(var i=0;i<8;i++){%>
     <% for(var j=0;j<8;j++){%>
-      <a class=board href=javascript:board.check(<%= 10*i+j %>);><span class=stone id=<%= 10*i+j%>></span></a>
+      <a class=board id=<%= 100*(i+1)+j%> href=javascript:board.check(<%= 10*i+j %>);><span class=stone id=<%= 10*i+j%>></span></a>
       <%}%>
       <br>
       <%}%>
