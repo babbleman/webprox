@@ -40,6 +40,7 @@ transition: background 0.3s linear;
 }
 
 .btn-gradient-3d {
+  font-size:50px;
   display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;

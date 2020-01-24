@@ -24,6 +24,12 @@ class Board{
   }
 
   drawboard(){
+    if(this.ongame==false){
+      document.getElementById("startbutton").value="スタート";
+      return
+    }
+    document.getElementById("startbutton").value="リセット";
+              alert("imehere")
     for(var i=0;i<this.size;i++){
     for(var j=0;j<this.size;j++){
       var color=""
@@ -225,6 +231,7 @@ class Board{
       }
     }
     else{
+      alert("コンピュータ:パス")
       this.turnchange()
     this.drawboard();
     }
@@ -242,6 +249,7 @@ class Board{
     this.board[x][x]=1;
     this.board[x-1][x]=2;
     this.board[x][x-1]=2;
+    this.ongame=true;
       this.drawboard()
 
     }
