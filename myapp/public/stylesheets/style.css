@@ -2,11 +2,15 @@
   margin: 0;
   padding:0;
 }
+head{
+  margin-top: 150px;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   margin:     0;
+
 }
 
 a {
@@ -66,4 +70,31 @@ transition: background 0.3s linear;
   height:1000px;
   position: fixed;
   display:inline-block;
+}
+.menu{
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  right:0;
+  top: 0;
+
+}
+
+li{
+  font-family: sans-serif;
+  font-size: 40px;
+  width:24%;
+  height:100px;
+  float: left;
+  border: 1px solid;
+  background: white;
+  border-radius: 6px;
+  text-align: center;
+  border-color: green;
+}
+li:hover{
+  background: #f5f5f5;
+}
+.menu ::after{
+clear: both;
 }
