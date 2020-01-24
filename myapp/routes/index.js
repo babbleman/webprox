@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
 router.get('/db',(req, res, next)=>{
   client.query('SELECT * from users', (err, res) => {
     if (err) throw err;
-    res.render('/db',result)
+    res.render('db',result)
     });
 }
 )
