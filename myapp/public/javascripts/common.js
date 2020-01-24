@@ -29,7 +29,7 @@ class Board{
       return
     }
     document.getElementById("startbutton").value="リセット";
-              alert("imehere")
+
     for(var i=0;i<this.size;i++){
     for(var j=0;j<this.size;j++){
       var color=""
