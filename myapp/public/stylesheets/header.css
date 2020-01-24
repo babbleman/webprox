@@ -8,14 +8,18 @@ body{
   width: :300px;
   padding: 40px;
   position:absolute;
-  top: 50%;
-  left:50%;　
+  top: 0;
+  left:0;
+  bottom:0;
+  right:0;　
   transform: translate(-50%,-50%);
   background: #191919;
   text-align: center;
 
 }
 .box input[type ="text"],.box input[type="password"]{
+  font-size: 16px;
+
   border:0;
   background: none;
   display: block;
