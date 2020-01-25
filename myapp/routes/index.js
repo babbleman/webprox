@@ -47,7 +47,7 @@ router.get('/db', function(req, res, next) {
   client.connect();
   client.query('SELECT * from users;', (err, result) => {
     if (err) throw err;
-    res.render('db',result)
+    res.render('db',dd:result)
     for (let row of result.rows) {
       console.log(JSON.stringify(row));
     }
