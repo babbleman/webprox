@@ -7,7 +7,7 @@ router.get('/othello', function(req, res, next) {
   res.render('index', { title: 'Express',Board:b});
 });
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express',Board:b});
+  res.render('login', { message:""});
 });
 router.get('/', function(req, res, next) {
   res.render('top');
@@ -42,7 +42,7 @@ router.post('/top',function(req,res,next){
 //     });
 // }
 // )
-router.post('/logincheck', Controller.regsituser);
+router.post('/logincheck', Controller.checkuser);
 
 
 module.exports = router;
