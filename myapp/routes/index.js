@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Controller= require('../controller/controller.js')
 var b=require('../classfiles/board.js')
 /* GET home page. */
 router.get('/othello', function(req, res, next) {
@@ -11,6 +12,9 @@ router.get('/login', function(req, res, next) {
 router.get('/', function(req, res, next) {
   res.render('top');
 });
+router.post('/top',function(req,res,next){
+  res.render('index')
+})
 // router.get('/db',async(req,res)=>{
 //   try{
 //     const client=await pool.connect()
@@ -38,22 +42,7 @@ router.get('/', function(req, res, next) {
 //     });
 // }
 // )
-router.get('/db', function(req, res, next) {
-  const { Client } = require('pg');
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true,
-  });
-  client.connect();
-  client.query('SELECT * from users;', (err, result) => {
-    if (err) throw err;
-    res.render('db',{dd:result})
-    for (let row of result.rows) {
-      console.log(JSON.stringify(row));
-    }
-    client.end();
-  });
-});
+router.post('/logincheck', Controller.regsituser);
 
 
 module.exports = router;
