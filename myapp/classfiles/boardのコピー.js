@@ -1,31 +1,14 @@
-function aiueo(delay){
-  return new Promise(function(resolve,reject){
-    setTimeout(function(){resolve(console.log("pp"));},delay);
-
-  });
-}
-
-aiueo(4000).then(function(value){
-  console.log("00");
-});
-
-
-
-
-
-
-
-
-
-
-
-
-function hello(){
-  return new Promise(function(resolve,reject){
-    setTimeout(function(){ resolve(aiueo(3000))},2000)
-  })
-}
-
-hello().then(function(value){
-  console.log("oooop");
+let {PythonShell} = require('python-shell')
+var x="./python/test.py"
+var pyshell=new PythonShell(x)
+pyshell.send(20)
+pyshell.on('message',function(data,err){
+  // if (err) throw err
+  console.log(data);
 })
+// PythonShell.run(x, null, function (err,data) {
+//   if (err) throw err;
+//   for(var i=0;i<10;i++){
+//     console.log(data[i]);
+//   }
+// });

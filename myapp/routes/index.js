@@ -1,11 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const { Client } = require('pg');
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-client.connect();
 var b=require('../classfiles/board.js')
 /* GET home page. */
 router.get('/othello', function(req, res, next) {
@@ -44,14 +38,22 @@ router.get('/', function(req, res, next) {
 //     });
 // }
 // )
-
-client.query('SELECT * from users;', (err, res) => {
-  if (err) throw err;
-  console.log(res);
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
+router.get('/db', function(req, res, next) {
+  const { Client } = require('pg');
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query('SELECT * from users;', (err, result) => {
+    if (err) throw err;
+    res.render('db',result)
+    for (let row of result.rows) {
+      console.log(JSON.stringify(row));
+    }
+    client.end();
+  });
 });
+
 
 module.exports = router;

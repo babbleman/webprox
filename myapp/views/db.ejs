@@ -1,72 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
-    <title><%= title %></title>
-    <a href="/login">ログインページ</a>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script type="text/javascript" src="/javascripts/common.js"></script>
-    <script type="text/javascript">
-    var board=new Board(8);
-    </script>
+    <meta charset="utf-8">
+    <title></title>
   </head>
   <body>
-    <center><h1><%= title %></h1></center>
-    <p>オセロしようぜ！</p>
-    <center>
-    <% for(var i=0;i<8;i++){%>
-    <% for(var j=0;j<8;j++){%>
-      <a class=board href=javascript:board.check(<%= 10*i+j %>);><span class=stone id=<%= 10*i+j%>></span></a>
-      <%}%>
-      <br>
-      <%}%>
-              <center><a href=javascript:board.drawboard() class="btn-gradient-3d">start</a></center>
-    </center>
-<br>
 
-
-<div id="o" style="display:block"<h3>Visibility:hidden</h3></div>
-<input type=button value="こんにちは" onclick=javascript:changedisplay()>
-
-<font color=blue size=50>
-which color do you want to choose?
-</font>
-<br>
-<input type=button value="青っぽいやつ" onclick=javascript:changedisplay("red")>
-<br>
-<input type=button value="赤っぽいやつ" onclick=javascript:changedisplay("blue")>
-<br>
-<input type=button value="黄色っぽいやつ" class="oo">
-
-<div id=blue>
-<table border=1>
-aaaaaaaaaaaaaaaaaaaaaaaaa
-</table></div>
-<div id=red>ひよこだぜええええ<br>鶏になりそうだぜ</div>
-<div id=black>なんてこったい</div>
-
-
-<input type=button class="oo">
-<script type="text/javascript">
-  $('.oo').click(function(){
-    $('#red'),toggle(1000);
-  })
-</script>
-<script>
-
-
-function changedisplay(color){
-
-  var arr=["blue","red","black"]
-  for(var i=0;i<arr.length;i++){
-    var displaystatus="none"
-    if (color==arr[i]){
-      displaystatus="block"
-    }
-    document.getElementById(arr[i]).style.display=displaystatus
-
-}
-}
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </body>
 </html>
