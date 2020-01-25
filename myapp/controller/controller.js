@@ -22,7 +22,7 @@ module.exports={
       res.redirect('/')
     }
     else{
-        res.render('../views/login.ejs', { message:"ユーザー名かパスワードが間違っています"});
+        res.redirect('/login')
     }
       client.end();
     });
