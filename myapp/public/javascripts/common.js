@@ -34,7 +34,7 @@ class Board{
     for(var j=0;j<this.size;j++){
       var color=""
       if (this.board[i][j]==1){
-        color="black";
+        color="linear-gradient(#e66465, #9198e5)";
       }
       else if(this.board[i][j]==2){
         color="white";
