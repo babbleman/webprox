@@ -71,7 +71,7 @@ module.exports={
         console.log("新しいクライアント");
         // console.log(client._queryable);
         // console.log(client._connecting);
-        client.query('insert into users values(name=$1,password=$2);',qstr, (err, result) => {
+        client.query('insert into users values($1,$2);',qstr, (err, result) => {
                 if (err) throw err;
         console.log("登録に成功しました");
         res.redirect('/top')
