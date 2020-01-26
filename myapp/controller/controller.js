@@ -11,7 +11,7 @@ const client = new Client({
 module.exports={
     //ユーザー登録済み確認
   checkuser:function(req,res,next){
-    var name=req.body['name'];
+    var name=req.body['id'];
     var pass=req.body['password'];
     var qstr=[name,pass];
     console.log(name);

@@ -1,4 +1,83 @@
 body{
+  background:#d0def5;
+  font-family: sans-serif;
+  margin:0;
+
+}
+
+.menu{
   margin: 0;
-  
+  background: red;
+  color:white;
+  font-family: sans-serif;
+}
+
+.content{
+  position: fixed;
+  background: orange;
+}
+
+.comment{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+input[type="text"],input[type="password"]{
+  box-sizing: border-box;
+  font-size: 16px;
+  width: 80%;
+  height:40px;
+  margin: 3px;
+}
+h1{
+  font-size: 20px;
+  text-align: center;
+}
+
+#inputform{
+  background-color: white;
+  margin: 20px;
+}
+input[type="submit"]{
+  box-sizing: border-box;
+  font-size: 16px;
+  width: 80%;
+  height:40px;
+  margin: 3px;
+  background: #71bdf0;
+  color: white;
+  font-family: sans-serif;
+}
+
+input[type="submit"]:hover{
+  background-color: : #d0def5;
+
+}
+
+
+
+a{
+    text-decoration: none;
+    color: #5894f5
+}
+
+.comement:before,
+.comment:after {
+border-top: 1px solid;
+content: "";
+flex-grow: 1;
+}
+
+.comment:before {
+margin-right: 1rem;
+}
+.title-border:after {
+margin-left: 1rem;
+}
+.logo{
+  width:100%;
+  text-align: center;
+  font-size: 11px;
+  color: skyblue;
 }

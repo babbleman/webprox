@@ -15,6 +15,11 @@ router.get('/', function(req, res, next) {
 router.post('/top',function(req,res,next){
   res.render('index')
 })
+router.get('/giveup', function(req, res, next) {
+  res.render('giveup')})
+router.get('/regist',function(req,res,next){
+    res.render('regist')
+  })
 // router.get('/db',async(req,res)=>{
 //   try{
 //     const client=await pool.connect()
@@ -43,6 +48,7 @@ router.post('/top',function(req,res,next){
 // }
 // )
 router.post('/logincheck', Controller.checkuser);
+router.post('/regist',Controller.regsituser);
 
 
 module.exports = router;
