@@ -29,7 +29,7 @@ module.exports={
     else{
       console.log("存在しません");
         res.redirect('/login')
-        client.end)();
+        client.end();
     }
     });
   },
