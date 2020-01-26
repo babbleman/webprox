@@ -21,6 +21,7 @@ body{
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 35px;
 }
 
 input[type="text"],input[type="password"]{
@@ -31,7 +32,7 @@ input[type="text"],input[type="password"]{
   margin: 3px;
 }
 h1{
-  font-size: 20px;
+  font-size: 40px;
   text-align: center;
 }
 
