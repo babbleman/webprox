@@ -42,7 +42,6 @@ module.exports={
       ssl: true,
     });
     console.log(name);
-    console.log(password);
     console.log(client._connecting);
     console.log(client._connected);
     client.connect();
