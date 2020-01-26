@@ -16,8 +16,10 @@ module.exports={
     var qstr=[name,pass];
     console.log(name);
     console.log(client._queryable);
-    if(!(client._connecting || client._connected)){
-    client.connect();}
+    if(true){
+      console.log("hi");
+      client.connect()
+    }
     client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
       if (err) throw err;
             console.log(result[0]);
