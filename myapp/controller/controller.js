@@ -77,5 +77,4 @@ module.exports={
         res.redirect('/top')
             })
       }
-      client.end();
   })}}
