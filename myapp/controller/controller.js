@@ -59,8 +59,8 @@ module.exports={
       }
       else{
         console.log("登録します");
-        console.log(client._queryable);
-        console.log(client._connecting);
+        // console.log(client._queryable);
+        // console.log(client._connecting);
         client.end();
         var client = new Client({
           connectionString: process.env.DATABASE_URL,
