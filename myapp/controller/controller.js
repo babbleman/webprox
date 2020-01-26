@@ -25,8 +25,8 @@ module.exports={
       client.end();
     }
     else{
+      res.render(Views+'/login.ejs',{message:"ユーザ名かパスワードが間違っています"});
       console.log("存在しません");
-        res.redirect('/login')
         client.end();
     }
     });
@@ -47,9 +47,15 @@ module.exports={
     client.query('SELECT * from users where name=$1',[name],(err, result) => {
       if (err) throw err;
       console.log(result);
-      if(result.rows.length>0){
+      if(name.length<2){
+        res.render(Views+'/regist.ejs',{message:"名前は３文字以上で登録して下さい"});
+      }
+      else if (pass.length<=3){
+        res.render(Views+'/regist.ejs',{message:"パスワードは４文字以上入力してください"});
+      }
+      else if(result.rows.length>0){
         console.log("登録ずみのユーザーです");
-        res.redirect('/regist')
+        res.render(Views+'/regist.ejs',{message:"このユーザー名は既に登録されています"});
       }
       else{
         console.log("登録します");
@@ -58,4 +64,5 @@ module.exports={
         res.redirect('/')
             })
       }
+      client.end();
   })}}

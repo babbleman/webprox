@@ -18,7 +18,7 @@ router.post('/top',function(req,res,next){
 router.get('/giveup', function(req, res, next) {
   res.render('giveup')})
 router.get('/regist',function(req,res,next){
-    res.render('regist')
+    res.render('regist',{ message:""})
   })
 // router.get('/db',async(req,res)=>{
 //   try{
