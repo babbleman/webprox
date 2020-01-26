@@ -17,7 +17,7 @@ module.exports={
       ssl: true,
     });
       client.connect()
-      client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
+      client.query('SELECT * from users where name=$1;', qstr,(err, result) => {
       if (err) throw err;
             console.log(result[0]);
       if(result.length>0){
@@ -42,10 +42,11 @@ module.exports={
       ssl: true,
     });
     console.log(name);
+    console.log(password);
     console.log(client._connecting);
     console.log(client._connected);
     client.connect();
-    client.query('select * from users where name=$1;',qstr, (err, result) => {
+    client.query('SELECT * from users where name=$1;',qstr, (err, result) => {
       if (err) throw err;
       console.log(result);
       if(result.length>0){
