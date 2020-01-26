@@ -58,12 +58,9 @@ module.exports={
         res.render(Views+'/regist.ejs',{message:"このユーザー名は既に登録されています"});
       }
       else{
-        var client = new Client({
-          connectionString: process.env.DATABASE_URL,
-          ssl: true,
-        });
         console.log("登録します");
-            client.connect();
+        console.log(client._queryable);
+        console.log(client._connecting);
         client.query('insert into users values(name=$1,password=$2);',qstr, (err, result) => {
                 if (err) throw err;
         console.log("登録に成功しました");
