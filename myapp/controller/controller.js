@@ -46,6 +46,7 @@ module.exports={
     client.connect();
     client.query('SELECT * from users where name=$1',[name],(err, result) => {
       if (err) throw err;
+            client.end();
       console.log(result);
       if(name.length<2){
         res.render(Views+'/regist.ejs',{message:"名前は３文字以上で登録して下さい"});
@@ -58,6 +59,10 @@ module.exports={
         res.render(Views+'/regist.ejs',{message:"このユーザー名は既に登録されています"});
       }
       else{
+        var client = new Client({
+          connectionString: process.env.DATABASE_URL,
+          ssl: true,
+        });
         console.log("登録します");
             client.connect();
         client.query('insert into users values(name=$1,password=$2);',qstr, (err, result) => {
