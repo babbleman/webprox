@@ -12,7 +12,6 @@ module.exports={
     var pass=req.body['password'];
     var qstr=[name,pass];
     console.log(name);
-    console.log(client._queryable);
     var client = new Client({
       connectionString: process.env.DATABASE_URL,
       ssl: true,
