@@ -15,7 +15,9 @@ module.exports={
     var pass=req.body['password'];
     var qstr=[name,pass];
     console.log(name);
-    client.connect();
+    console.log(client._queryable);
+    if(!client._queryable){
+    client.connect();}
     client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
       if (err) throw err;
             console.log(result);
@@ -36,7 +38,8 @@ module.exports={
     var pass=req.body['password'];
     var qstr=[name,pass]
     console.log(name);
-    client.connect();
+    if(!client._queryable){
+    client.connect();}
     client.query('select * from users where name=$1;',qstr, (err, result) => {
       if (err) throw err;
       console.log(result);
