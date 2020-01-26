@@ -21,13 +21,15 @@ module.exports={
       if (err) throw err;
       if(result.rows.length>0){
         console.log("存在しました");
+        client.end();
       res.redirect('/top')
-      client.end();
+
     }
     else{
+      client.end();
       res.render(Views+'/login.ejs',{message:"ユーザ名かパスワードが間違っています"});
       console.log("存在しません");
-        client.end();
+
     }
     });
   },
@@ -46,7 +48,7 @@ module.exports={
     client.connect();
     client.query('SELECT * from users where name=$1',[name],(err, result) => {
       if (err) throw err;
-      console.log(result.rowds[0]);
+      console.log(result.rows[0]);
       if(name.length<2){
         res.render(Views+'/regist.ejs',{message:"名前は３文字以上で登録して下さい"});
       }
