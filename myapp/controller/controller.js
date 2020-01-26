@@ -24,10 +24,12 @@ module.exports={
       if(result.length>0){
         console.log("存在しました");
       res.redirect('/')
+      client.end();
     }
     else{
       console.log("存在しません");
         res.redirect('/login')
+        client.end)();
     }
     });
   },
@@ -38,7 +40,9 @@ module.exports={
     var qstr=[name,pass]
     console.log(name);
     console.log(client._connecting);
+        console.log(client._connected);
     if(!(client._connecting || client._connected)){
+      console.log("ajlfdjafkkfajdsklfdkkafdkjfjkdasjkkjdkj");
     client.connect();}
     client.query('select * from users where name=$1;',qstr, (err, result) => {
       if (err) throw err;
