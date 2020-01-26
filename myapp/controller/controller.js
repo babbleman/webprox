@@ -18,6 +18,7 @@ module.exports={
     client.connect();
     client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
       if (err) throw err;
+            console.log(result);
       console.log(result.length);
       if(result.length>0){
         console.log("存在しました");
@@ -38,6 +39,7 @@ module.exports={
     client.connect();
     client.query('select * from users where name=$1;',qstr, (err, result) => {
       if (err) throw err;
+      console.log(result);
       if(result.length>0){
         console.log("登録ずみのユーザーです");
         res.redirect('/regist')
