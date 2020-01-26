@@ -22,12 +22,10 @@ module.exports={
       if(result.length>0){
         console.log("存在しました");
       res.redirect('/')
-            client.end();
     }
     else{
       console.log("存在しません");
         res.redirect('/login')
-              client.end();
     }
     });
   },
@@ -43,14 +41,12 @@ module.exports={
       if(result.length>0){
         console.log("登録ずみのユーザーです");
         res.redirect('/regist')
-              client.end();
       }
       else{
         console.log("登録します");
         client.query('insert into users values(name=$1,password=$2);',qstr, (err, result) => {
         console.log("登録に成功しました");
         res.redirect('/')
-              client.end();
             })
       }
   })}}
