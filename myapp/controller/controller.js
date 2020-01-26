@@ -18,15 +18,17 @@ module.exports={
     client.connect();
     client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
       if (err) throw err;
+      console.log(result.length);
       if(result.length>0){
         console.log("存在しました");
       res.redirect('/')
+            client.end();
     }
     else{
       console.log("存在しません");
         res.redirect('/login')
+              client.end();
     }
-      client.end();
     });
   },
   //ユーザー新規登録
