@@ -6,10 +6,10 @@ var b=require('../classfiles/board.js')
 router.get('/othello', function(req, res, next) {
   res.render('index', { title: 'Express',Board:b});
 });
-router.get('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('login', { message:""});
 });
-router.get('/', function(req, res, next) {
+router.get('/top', function(req, res, next) {
   res.render('top');
 });
 router.post('/top',function(req,res,next){

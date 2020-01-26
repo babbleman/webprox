@@ -21,7 +21,7 @@ module.exports={
       if (err) throw err;
       if(result.rows.length>0){
         console.log("存在しました");
-      res.redirect('/')
+      res.redirect('/top')
       client.end();
     }
     else{
@@ -61,7 +61,7 @@ module.exports={
         console.log("登録します");
         client.query('insert into users values(name=$1,password=$2);',qstr, (err, result) => {
         console.log("登録に成功しました");
-        res.redirect('/')
+        res.redirect('/top')
             })
       }
       client.end();
