@@ -68,8 +68,8 @@ module.exports={
         });
         client.connect();
         console.log("新しいクライアント");
-        console.log(client._queryable);
-        console.log(client._connecting);
+        // console.log(client._queryable);
+        // console.log(client._connecting);
         client.query('insert into users values(name=$1,password=$2);',qstr, (err, result) => {
                 if (err) throw err;
         console.log("登録に成功しました");
