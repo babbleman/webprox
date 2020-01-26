@@ -3,10 +3,7 @@ var express = require('express');
 var model=new Model();
 const Views='../views/'
 const { Client } = require('pg');
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
+
 
 module.exports={
     //ユーザー登録済み確認
@@ -16,11 +13,12 @@ module.exports={
     var qstr=[name,pass];
     console.log(name);
     console.log(client._queryable);
-    if(true){
-      console.log("hi");
+    var client = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: true,
+    });
       client.connect()
-    }
-    client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
+      client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
       if (err) throw err;
             console.log(result[0]);
       if(result.length>0){
@@ -40,12 +38,14 @@ module.exports={
     var name=req.body['name'];
     var pass=req.body['password'];
     var qstr=[name,pass]
+    var client = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: true,
+    });
     console.log(name);
     console.log(client._connecting);
-        console.log(client._connected);
-    if(!(client._connecting || client._connected)){
-      console.log("ajlfdjafkkfajdsklfdkkafdkjfjkdasjkkjdkj");
-    client.connect();}
+    console.log(client._connected);
+    client.connect();
     client.query('select * from users where name=$1;',qstr, (err, result) => {
       if (err) throw err;
       console.log(result);
