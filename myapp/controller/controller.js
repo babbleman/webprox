@@ -19,9 +19,11 @@ module.exports={
     client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
       if (err) throw err;
       if(result.length>0){
+        console.log("存在しました");
       res.redirect('/')
     }
     else{
+      console.log("存在しません");
         res.redirect('/login')
     }
       client.end();
@@ -34,12 +36,16 @@ module.exports={
     var qstr=[name,pass]
     console.log(name);
     client.connect();
-    client.query('INSERT INTO users values($1,$2);',qstr, (err, result) => {
+    client.query('select * from users where name=$1;',qstr, (err, result) => {
       if (err) throw err;
-      res.redirect('/')
-      client.end();
-    });
-
-
-  }
-}
+      if(result.length>0){
+        console.log("登録ずみのユーザーです");
+        res.redirect('/regist')
+              client.end();
+      }
+      else{
+        console.log("登録に成功しました");
+        res.redirect('/')
+              client.end();
+      }
+  })}}
