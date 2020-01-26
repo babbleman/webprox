@@ -61,6 +61,15 @@ module.exports={
         console.log("登録します");
         console.log(client._queryable);
         console.log(client._connecting);
+        client.end();
+        var client = new Client({
+          connectionString: process.env.DATABASE_URL,
+          ssl: true,
+        });
+        client.connect();
+        console.log("新しいクライアント");
+        console.log(client._queryable);
+        console.log(client._connecting);
         client.query('insert into users values(name=$1,password=$2);',qstr, (err, result) => {
                 if (err) throw err;
         console.log("登録に成功しました");
