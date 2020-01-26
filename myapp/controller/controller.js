@@ -16,12 +16,11 @@ module.exports={
     var qstr=[name,pass];
     console.log(name);
     console.log(client._queryable);
-    if(!client._connecting){
+    if(!(client._connecting || client._connected)){
     client.connect();}
     client.query('SELECT * from users where name=$1 and password=$2;', qstr,(err, result) => {
       if (err) throw err;
-            console.log(result);
-      console.log(result.length);
+            console.log(result[0]);
       if(result.length>0){
         console.log("存在しました");
       res.redirect('/')
@@ -38,7 +37,8 @@ module.exports={
     var pass=req.body['password'];
     var qstr=[name,pass]
     console.log(name);
-    if(!client._connecting){
+    console.log(client._connecting);
+    if(!(client._connecting || client._connected)){
     client.connect();}
     client.query('select * from users where name=$1;',qstr, (err, result) => {
       if (err) throw err;
