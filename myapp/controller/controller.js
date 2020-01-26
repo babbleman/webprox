@@ -46,7 +46,6 @@ module.exports={
     client.connect();
     client.query('SELECT * from users where name=$1',[name],(err, result) => {
       if (err) throw err;
-            client.end();
       console.log(result);
       if(name.length<2){
         res.render(Views+'/regist.ejs',{message:"名前は３文字以上で登録して下さい"});
