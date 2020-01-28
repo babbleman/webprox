@@ -20,6 +20,8 @@ router.get('/giveup', function(req, res, next) {
 router.get('/regist',function(req,res,next){
     res.render('regist',{ message:""})
   })
+  router.get('/tetris', function(req, res, next) {
+    res.render('tetris')})
 // router.get('/db',async(req,res)=>{
 //   try{
 //     const client=await pool.connect()
