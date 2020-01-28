@@ -20,7 +20,14 @@ body{
 }
 
 input.direction{
+  font-size: 4em;
   padding: 40px;
   width: 100px;
-  height:1000px;
+  height:100px;
+}
+input.rotate{
+  font-size: 4em;
+  padding: 40px;
+  width: 100px;
+  height:100px;
 }
