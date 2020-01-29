@@ -3,6 +3,7 @@ body{
   padding: 0;
   font-family: sans-serif
   background: #d0def5;
+  touch-action:manipulation;
 }
 
 .board{
@@ -30,7 +31,4 @@ input.rotate{
   padding: 40px;
   width: 100px;
   height:100px;
-}
-*{
-  -webkit-text-size-adjust:100%;
 }
