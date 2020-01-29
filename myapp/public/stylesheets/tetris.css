@@ -31,3 +31,6 @@ input.rotate{
   width: 100px;
   height:100px;
 }
+*{
+  -webkit-text-size-adjust:100%;
+}
