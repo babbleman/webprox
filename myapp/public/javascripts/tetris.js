@@ -27,8 +27,8 @@ class Tetris{
     this.peacei=
     [[0,0,0,0],
     [0,0,0,0],
-    [0,0,0,0],
-    [1,1,1,1]
+    [1,1,1,1],
+    [0,0,0,0]
   ]
   this.peacez=
   [
@@ -55,15 +55,15 @@ class Tetris{
   ]
   this.peacej=
   [
-    [0,0,0],
     [1,0,0],
-    [1,1,1]
+    [1,1,1],
+    [0,0,0]
   ]
   this.peacel=
   [
-    [0,0,0],
     [0,0,1],
-    [1,1,1]
+    [1,1,1],
+    [0,0,0]
   ]
   this.peacearray.push(this.peaceblank)
   this.peacearray.push(this.peacei)
@@ -304,10 +304,22 @@ return this.peacearray[a];
     }
     this.moveonboard();
   }
+  droptolast(){
+    while(true){
+      if(!this.canmove([1,0])){
+        break
+      }
+      this.move([1,0])
+    }
+    this.moveonboard()
+  }
 
   moveonboard(){
     for (var i = 0; i < this.boardheight; i++) {
       for (var j = 0; j < this.boardwidth; j++) {
+        console.log(i,j)
+        console.log(this.board);
+        console.log(this.board[i][j]);
         if(this.board[i][j]<0){
           this.board[i][j]=0
         }
@@ -373,3 +385,8 @@ for (var i = 0; i <100; i++) {
 t.board.unshift("a")
 t.board.splice(1,4)
 console.log(t.board);
+
+// for (var i = 0; i < 20; i++) {
+// t.droptolast()
+// t.moveonboard()
+// }

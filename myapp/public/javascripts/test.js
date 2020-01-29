@@ -239,6 +239,15 @@ return this.peacearray[a];
     callback()
   }
 
+  droptolast(){
+    while(true){
+      if(!this.canmove([1,0])){
+        break
+      }
+      this.move([1,0])
+    }
+  }
+
   drop(){
     var dir=[1,0]
     if(this.canmove(dir)){

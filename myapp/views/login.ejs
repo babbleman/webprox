@@ -11,7 +11,6 @@
 
   <h1>ご利用いただきありがとうございます</h1>
   <div class="errm">
-  <center><%= message%></center>
   </div>
   <div class="comment">
   <center>IDとパスワードを入力してサインインしてください</center>
@@ -19,8 +18,8 @@
 <form class="" action="/logincheck" method="post">
   <div id=inputform>
     <center>
-  <input class=text type="text" name="id" value="" placeholder="あなたのお名前" maxlength="20"><br>
-  <input class=text type="password" name="password" value="" placeholder="あなたのパスワード">
+  <input class=text type="text" name="id" value="" placeholder="あなたのお名前" maxlength="20" onchange=checkname()><br>
+  <input class=text type="password" name="password" value="" placeholder="あなたのパスワード" onchange=checkpass()>
     <input type="submit" name="" value="ログイン">
     </div>
   </center>
@@ -30,5 +29,25 @@
     </form>
     <hr color=white width=90% height=1px>
     <div class="logo">@高柴コーポレーション2020</div>
+    <script type="text/javascript">
+      function checkname(){
+        var x=document.getElementsByName("id")[0].value
+        if(x.length<4){
+          document.getElementsByClassName("errm")[0].innerHTML="名前は２文字以上入力して下さい"
+        }
+        else{
+            document.getElementsByClassName("errm")[0].innerHTML=""
+        }
+      }
+      function checkpass(){
+        var x=document.getElementsByName("password")[0].value
+        if(x.length<4){
+          document.getElementsByClassName("errm")[0].innerHTML="パスワードは４文字以上で入力して下さい"
+        }
+        else{
+            document.getElementsByClassName("errm")[0].innerHTML=""
+        }
+      }
+    </script>
   </body>
 </html>

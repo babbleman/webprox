@@ -28,7 +28,7 @@
   </script>
 <script type="text/javascript">
     tetris.createnewpeace(tetris.makenewplace.bind(tetris));
-    setInterval("draws()",200);
+    setInterval("draws()",700);
     function draws(){
       tetris.drop();
       tetris.drawboard();
@@ -46,7 +46,7 @@
     </script>
         <input type=button class="direction" onclick=tetris.move([0,-1]) value="左">
     <input type=button class="direction" onclick=tetris.move([0,1]) value="右">
-        <input type=button class="direction" onclick=tetris.move([1,0]) value="下">
+        <input type=button class="direction" onclick=tetris.droptolast() value="下">
                         <input type=button class=rotate onclick=tetris.rotateleft() value="左回転">
                 <input type=button class=rotate onclick=tetris.rotateright() value="右回転">
                 <input type="button" name="" value="リセット" onclick=tetris.reset()>
