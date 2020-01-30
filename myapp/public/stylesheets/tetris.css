@@ -62,7 +62,6 @@ input.rotate{
   /* background-color: purple; */
 }
 
-a:link,a:hover,a:active,a:visited{
-  background-color: white;
-  touch-action:manipulation;
+a{
+  -webkit-tap-highlight-color:white;
 }
