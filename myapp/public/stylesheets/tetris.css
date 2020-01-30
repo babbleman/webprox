@@ -61,3 +61,8 @@ input.rotate{
   display: inline-block;
   /* background-color: purple; */
 }
+
+a:link,a:hover,a:active,a:visited{
+  background-color: white;
+  touch-action:manipulation;
+}
