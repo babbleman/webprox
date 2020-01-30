@@ -65,3 +65,34 @@ input.rotate{
 a{
   -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
+
+#controller{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    position: absolute;
+    left: 800px;
+    top:1000px;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background: orange;
+}
+.dropbutton{
+  width: 100px;
+  height: 100px;
+  position: center;
+}
+.rotatel{
+  float: left;
+  width:100px;
+  height: 100px;
+  border-radius: 50%;
+  background:blue;
+}
+
+.rotater{
+  float:left;
+  width:100px;
+  height: 100px;
+  border-radius: 50%;
+  background:pink;
+}

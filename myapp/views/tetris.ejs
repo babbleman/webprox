@@ -17,8 +17,14 @@
 </style>
   </head>
   <body>
-    <a class=test href="javascript:tetris.move([0,-1])"></a>
-    <a class=test2 href="javascript:tetris.move([0,1])"></a>
+    <a class=test href="javascript:tetris.movedraw([0,-1])"></a>
+    <a class=test2 href="javascript:tetris.movedraw([0,1])"></a>
+    <div id=controller>
+      <a class=rotater href="javascript:tetris.droptolast()"></a>
+      <a class=rotatel href="javascript:tetris.rotateleft()"></a>
+        <a class=rotater href="javascript:tetris.rotateleft()"></a>
+
+    </div>
     <span class="hold">
       <script type="text/javascript">
       for (var i = 0; i <4; i++) {
@@ -63,6 +69,7 @@
                 <input type=button class=rotate onclick=tetris.rotateright() value="右回転">
                 <input type="button" name="" value="リセット" onclick=tetris.reset()>
                   <input type="button" name="" value="ホールド" onclick=tetris.holdpeace()>
+                  <input type="button" name="" value="ホールド" onclick=tetris.drwatest()>
 <script type="text/javascript">
   function down(){
     tetris.move([1,0])

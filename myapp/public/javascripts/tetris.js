@@ -432,7 +432,10 @@ return this.peacearray[a];
     }
   this.createnewpeace(this.makenewplace.bind(this))
   }
-
+  movedraw(dir){
+    this.move(dir)
+    this.drawboard();
+  }
 }
 
 function pause(){
@@ -445,6 +448,7 @@ else{
   tetris.ongame=false
   clearInterval()
 }
+
 }
 
 var t=new Tetris();
