@@ -4,8 +4,10 @@ class Tetris{
     this.boardwidth=10;
     this.nowpeace;
     this.gameend=false
+    this.ongame=false
     this.nowmovingplace;
     this.nowmovingstate;
+    this.hold=0
     this.colorarray=['white','#04adbf','red','green','purple','#c3c904','blue','orange']
     //確定石
     this.kakutei=9
@@ -233,6 +235,47 @@ return this.peacearray[a];
     this.checline();
   }
 
+  holdpeace(){
+    if(this.hold==0){
+      this.hold=this.nowmovingstate.map(a=>a.slice())
+      this.createnewpeace(this.makenewplace.bind(this))
+    }
+    else{
+      this.nowmovingstate=this.hold.map(a=>a.slice())
+      this.hold=this.nowmovingstate.map(a=>a.slice())
+    }
+
+  }
+
+  flashdropplace(){
+    var placecopy=this.getplace().map(a=>a.slice())
+    var flag=false
+    while(true){
+    for (var i = 0; i < placecopy.length; i++) {
+      placecopy[i][0]+=1
+    }
+    for (var i = 0; i < placecopy.length; i++) {
+      var y=placecopy[i][0]
+      var x=placecopy[i][1]
+      if(y>=this.boardheight){
+        flag=true
+      }
+      else if(this.board[y][x]>0){
+        console.log(this.board[y][x],"k");
+        console.log(this.board);
+        flag=true
+      }
+
+    }
+    if(flag){
+      for (var i = 0; i < placecopy.length; i++) {
+        placecopy[i][0]-=1
+      }
+      break
+    }
+  }
+  return placecopy
+}
   makenewplace(){
     var len=this.nowmovingstate.length
     var array=[]
@@ -259,7 +302,6 @@ return this.peacearray[a];
     // console.log(this.nowmovingplace);
     for (var i = 0; i < len; i++) {
       for (var j = 0; j < len; j++) {
-        console.log(this.nowmovingplace[i][j][0]);
         this.nowmovingplace[i][j][0]=4-len+i
         this.nowmovingplace[i][j][1]=middle-peacemiddle+j
       }
@@ -317,9 +359,6 @@ return this.peacearray[a];
   moveonboard(){
     for (var i = 0; i < this.boardheight; i++) {
       for (var j = 0; j < this.boardwidth; j++) {
-        console.log(i,j)
-        console.log(this.board);
-        console.log(this.board[i][j]);
         if(this.board[i][j]<0){
           this.board[i][j]=0
         }
@@ -361,6 +400,29 @@ return this.peacearray[a];
         document.getElementById(100*(i+1)+j).style.background=this.colorarray[color];
       }
     }
+    var flashplace=this.flashdropplace();
+    for (var i = 0; i < flashplace.length; i++) {
+      var y=flashplace[i][0]
+      var x=flashplace[i][1]
+      if(this.board[y][x]==0){
+      document.getElementById(100*(y+1)+x).style.background="#e8ede9";}
+    }
+
+    for (var i = 0; i < 4; i++) {
+      for (var j = 0; j < 4; j++) {
+        var num=this.nowmovingstate[i][j]
+        document.getElementById(10*(i+1)+j).style.background=this.colorarray[num];
+      }
+    }
+
+    // var array=this.flashdropplace().bind(this)
+    // alert("hahahad")
+    // for (var i = 0; i < array.length; i++) {
+    //   var y=array[i][0]
+    //   var x=array[i][1]
+    //   alert("hi")
+    //   document.getElementById(100*(y+1)+x).style.background="black";
+    // }
   }
   reset(){
     for (var i = 0; i < this.boardheight; i++) {
@@ -373,19 +435,29 @@ return this.peacearray[a];
 
 }
 
+function pause(){
+if(!tetris.ongame){
+  tetris.ongame=true
+  tetris.createnewpeace(tetris.makenewplace.bind(tetris));
+  setInterval("draws()",700);
+}
+else{
+  tetris.ongame=false
+  clearInterval()
+}
+}
 
 var t=new Tetris();
 t.createnewpeace(t.makenewplace.bind(t));
-for (var i = 0; i <100; i++) {
-  t.drop()
-  // console.log(t.nowmovingplace);
-  // console.log(t.board);
-}
+// for (var i = 0; i <100; i++) {
+//   t.drop()
+//   // console.log(t.nowmovingplace);
+//   // console.log(t.board);
+// }
 
-t.board.unshift("a")
-t.board.splice(1,4)
+// t.board.splice(1,4)
 console.log(t.board);
-
+console.log(t.flashdropplace());
 // for (var i = 0; i < 20; i++) {
 // t.droptolast()
 // t.moveonboard()

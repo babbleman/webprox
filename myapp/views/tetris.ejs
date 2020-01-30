@@ -17,6 +17,18 @@
 </style>
   </head>
   <body>
+    <a class=test href="javascript:tetris.move([0,-1])"></a>
+    <a class=test2 href="javascript:tetris.move([0,1])"></a>
+    <span class="hold">
+      <script type="text/javascript">
+      for (var i = 0; i <4; i++) {
+        for (var j = 0; j < 4; j++) {
+          document.write("<span class=holdboard id="+(10*(i+1)+j)+"></span>")
+        }
+        document.write("<br>")
+      }
+      </script>
+    </span>
     <div id=board>
     <script type="text/javascript">
     for (var i = 3; i <tetris.boardheight; i++) {
@@ -50,6 +62,7 @@
                         <input type=button class=rotate onclick=tetris.rotateleft() value="左回転">
                 <input type=button class=rotate onclick=tetris.rotateright() value="右回転">
                 <input type="button" name="" value="リセット" onclick=tetris.reset()>
+                  <input type="button" name="" value="ホールド" onclick=tetris.holdpeace()>
 <script type="text/javascript">
   function down(){
     tetris.move([1,0])
