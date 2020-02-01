@@ -7,6 +7,8 @@ class Tetris{
     this.ongame=false
     this.nowmovingplace;
     this.nowmovingstate;
+    this.nextpeace;
+    this.nextmovingstate;
     this.hold=0
     this.colorarray=['white','#04adbf','red','green','purple','#c3c904','blue','orange']
     //確定石
@@ -81,8 +83,7 @@ class Tetris{
   randompeace(){
     var max=this.peacearray.length-1
 var a = Math.floor( Math.random() * max+1 ) ;
-console.log(a);
-this.nowpeace=a
+this.nextpeace=a
 return this.peacearray[a];
   }
   getmovingstate(){
@@ -125,68 +126,98 @@ return this.peacearray[a];
     return true
   }
 
-  rotateright(){
+  rotate(dir){
+    var flasharray=this.flashdropplace().map(a=>a.slice())
     var len=this.nowmovingstate.length
     var arraycopy=this.nowmovingstate.map(a=>a.slice())
     var array2=this.nowmovingstate.map(a=>a.slice())
+    var array=[]
     //値渡しができている前提、必要があれば書き換える
+    if(dir=="right"){
     for (var i = 0; i < len; i++) {
       for (var j = 0; j < len; j++) {
-        array2[i][j]=arraycopy[len-1-j][i]
+        var pp=arraycopy[len-1-j][i]
+        array2[i][j]=pp
+        if(pp!=0){
+          array.push([i,j])
+        }
       }
     }
-    var array=this.getmovingstate()
+  }
+  else if(dir=="left"){
+    for (var i = 0; i < len; i++) {
+      for (var j = 0; j < len; j++) {
+        var pp=arraycopy[i][j]
+        array2[len-1-j][i]=pp
+        if(pp!=0){
+          array.push([len-1-j,i])
+        }
+      }
+    }
+  }
+    var beforearray=this.getplace().map(a=>a.slice())
+    var afterarray=[]
     for (var i = 0; i < array.length; i++) {
       var s=array[i][0]
       var t=array[i][1]
       //nowmovingplace[i][j]には二次元配列が入っている
       var y=this.nowmovingplace[s][t][0]
       var x=this.nowmovingplace[s][t][1]
+      afterarray.push([y,x])
       if(!(0<=x && x<this.boardwidth && y<this.boardheight)){
-        console.log(y,x);
         return
       }
     }
     this.nowmovingstate=array2;
+    this.changeboard(beforearray,afterarray,flasharray)
   }
-  rotateleft(){
-    var len=this.nowmovingstate.length
-    var arraycopy=this.nowmovingstate.map(a=>a.slice())
-    var array2=this.nowmovingstate.map(a=>a.slice())
-    //値渡しができている前提、必要があれば書き換える
-    for (var i = 0; i < len; i++) {
-      for (var j = 0; j < len; j++) {
-        array2[len-1-j][i]=arraycopy[i][j]
-      }
-    }
-    var array=this.getmovingstate()
-    for (var i = 0; i < array.length; i++) {
-      var s=array[i][0]
-      var t=array[i][1]
-      //nowmovingplace[i][j]には二次元配列が入っている
-      var y=this.nowmovingplace[s][t][0]
-      var x=this.nowmovingplace[s][t][1]
-      if(!(0<=x && x<this.boardwidth && y<this.boardheight)){
-        console.log(y,x);
-        return
-      }
-    }
-    this.nowmovingstate=array2;
-  }
+  // rotateleft(){
+  //   var len=this.nowmovingstate.length
+  //   var arraycopy=this.nowmovingstate.map(a=>a.slice())
+  //   var array2=this.nowmovingstate.map(a=>a.slice())
+  //   //値渡しができている前提、必要があれば書き換える
+  //   for (var i = 0; i < len; i++) {
+  //     for (var j = 0; j < len; j++) {
+  //       array2[len-1-j][i]=arraycopy[i][j]
+  //     }
+  //   }
+  //   var array=this.getmovingstate()
+  //   for (var i = 0; i < array.length; i++) {
+  //     var s=array[i][0]
+  //     var t=array[i][1]
+  //     //nowmovingplace[i][j]には二次元配列が入っている
+  //     var y=this.nowmovingplace[s][t][0]
+  //     var x=this.nowmovingplace[s][t][1]
+  //     if(!(0<=x && x<this.boardwidth && y<this.boardheight)){
+  //       return
+  //     }
+  //   }
+  //   this.nowmovingstate=array2;
+  // }
 
   move(dir){
     if(!this.canmove(dir)){
       return
     }
+    var flasharray=this.flashdropplace().map(a=>a.slice())
+    var beforearray=this.getplace().map(a=>a.slice())
+    var afterarray=[]
     var s=dir[0]
     var t=dir[1]
     var len=this.nowmovingstate.length
-    for (var i = 0; i < len; i++) {
+    var array=this.getmovingstate()
+    for (var x = 0; x < len; x++) {
       for (var j = 0; j < len; j++) {
-        this.nowmovingplace[i][j][0]+=s
-        this.nowmovingplace[i][j][1]+=t
+        this.nowmovingplace[x][j][0]+=s
+        this.nowmovingplace[x][j][1]+=t
       }
     }
+    for (var i = 0; i < array.length; i++) {
+      var y=array[i][0]
+      var x=array[i][1]
+      afterarray.push([this.nowmovingplace[y][x][0],this.nowmovingplace[y][x][1]])
+    }
+    this.changeboard(beforearray,afterarray,flasharray)
 
   }
   getwidth(){
@@ -261,8 +292,6 @@ return this.peacearray[a];
         flag=true
       }
       else if(this.board[y][x]>0){
-        console.log(this.board[y][x],"k");
-        console.log(this.board);
         flag=true
       }
 
@@ -290,7 +319,6 @@ return this.peacearray[a];
     array=this.getmovingstate();
     var middle=Math.floor((this.boardwidth)/2)
     var peacemiddle=Math.floor(len/2)
-    // console.log(middle);
     // for (var i = 0; i < array.length; i++) {
     //   var y=array[i][0]
     //   var x=array[i][1]
@@ -299,7 +327,6 @@ return this.peacearray[a];
     //   //X軸
     //   this.nowmovingplace[y][x][1]+=middle-peacemiddle+x
     // }
-    // console.log(this.nowmovingplace);
     for (var i = 0; i < len; i++) {
       for (var j = 0; j < len; j++) {
         this.nowmovingplace[i][j][0]=4-len+i
@@ -326,7 +353,12 @@ return this.peacearray[a];
   }
 
   createnewpeace(callback){
-    this.nowmovingstate=this.randompeace()
+    if(!this.nextpeace){
+      this.nextmovingstate=this.randompeace()
+    }
+    this.nowmovingstate=this.nextmovingstate.map(a=>a.slice())
+    this.nowpeace=this.nextpeace
+    this.nextmovingstate=this.randompeace()
     callback()
   }
 
@@ -336,15 +368,14 @@ return this.peacearray[a];
       this.move(dir)
     }
     else{
-      if(this.endcheck()){
-        this.gameend=true
-        return
-      }
 
       this.determinestone();
       this.createnewpeace(this.makenewplace.bind(this))
+      this.moveonboard()
+      this.drawboard()
+      this.drawnextpeace()
     }
-    this.moveonboard();
+
   }
   droptolast(){
     while(true){
@@ -354,6 +385,7 @@ return this.peacearray[a];
       this.move([1,0])
     }
     this.moveonboard()
+    this.drop()
   }
 
   moveonboard(){
@@ -391,15 +423,64 @@ return this.peacearray[a];
         this.board.unshift(a);
       }
     }
+    this.drawboard();
+  }
+  changeboard(array,array2,flasharray){
+    for (var i = 0; i < array.length; i++) {
+      if(array2.indexOf(array[i])==-1){
+      var s=array[i][0]
+      var t=array[i][1]
+      this.board[s][t]=0
+    }
+    }
+    for (var i = 0; i < array2.length; i++) {
+      var s=array[i][0]
+      var t=array[i][1]
+      this.board[s][t]=-this.nowpeace;
+    }
+    this.draw(array,array2,flasharray)
+  }
+  draw(array,array2,flasharray){
+    var flashplace=this.flashdropplace();
+    for (var i = 0; i < flasharray.length; i++) {
+        var y=flasharray[i][0]
+        var x=flasharray[i][1]
+        document.getElementById(100*(y+1)+x).style.background=this.colorarray[0]
+    }
+    for (var i = 0; i < flashplace.length; i++) {
+      var y=flashplace[i][0]
+      var x=flashplace[i][1]
+      if(this.board[y][x]==0){
+      document.getElementById(100*(y+1)+x).style.background="#e8ede9";}
+    }
+    for (var i = 0; i < array.length; i++) {
+      if(array2.indexOf(array[i])==-1){
+      var s=array[i][0]
+      var t=array[i][1]
+      if(s>=3){
+      document.getElementById(100*(s+1)+t).style.background=this.colorarray[0];}
+    }
+
+    }
+    for (var i = 0; i < array2.length; i++) {
+      var s=array2[i][0]
+      var t=array2[i][1]
+      if(s>=3){
+      document.getElementById(100*(s+1)+t).style.background=this.colorarray[this.nowpeace];}
+    }
+
   }
 
+
   drawboard(){
+
     for (var i = 3; i <tetris.boardheight; i++) {
       for (var j = 0; j < tetris.boardwidth; j++) {
         var color=Math.abs(this.board[i][j])
         document.getElementById(100*(i+1)+j).style.background=this.colorarray[color];
       }
     }
+
     var flashplace=this.flashdropplace();
     for (var i = 0; i < flashplace.length; i++) {
       var y=flashplace[i][0]
@@ -408,12 +489,12 @@ return this.peacearray[a];
       document.getElementById(100*(y+1)+x).style.background="#e8ede9";}
     }
 
-    for (var i = 0; i < 4; i++) {
-      for (var j = 0; j < 4; j++) {
-        var num=this.nowmovingstate[i][j]
-        document.getElementById(10*(i+1)+j).style.background=this.colorarray[num];
-      }
-    }
+    // for (var i = 0; i < 4; i++) {
+    //   for (var j = 0; j < 4; j++) {
+    //     var num=this.nowmovingstate[i][j]
+    //     document.getElementById(10*(i+1)+j).style.background=this.colorarray[num];
+    //   }
+    // }
 
     // var array=this.flashdropplace().bind(this)
     // alert("hahahad")
@@ -424,6 +505,22 @@ return this.peacearray[a];
     //   document.getElementById(100*(y+1)+x).style.background="black";
     // }
   }
+  drawnextpeace(){
+    for (var i = 0; i < 4; i++) {
+      for (var j = 0; j < 4; j++) {
+        document.getElementById(10*(i+1)+j).style.background=this.colorarray[0];
+      }
+    }
+    var len=this.nextmovingstate.length
+    for (var i = 0; i < len; i++) {
+      for (var j = 0; j < len; j++) {
+        if(this.nextmovingstate[i][j]!=0){
+          document.getElementById(10*(i+1)+j).style.background=this.colorarray[this.nextpeace];
+        }
+      }
+    }
+
+  }
   reset(){
     for (var i = 0; i < this.boardheight; i++) {
       for (var j= 0;j < this.boardwidth; j++) {
@@ -431,6 +528,7 @@ return this.peacearray[a];
       }
     }
   this.createnewpeace(this.makenewplace.bind(this))
+  this.drawboard();
   }
   movedraw(dir){
     this.move(dir)
@@ -455,14 +553,22 @@ var t=new Tetris();
 t.createnewpeace(t.makenewplace.bind(t));
 // for (var i = 0; i <100; i++) {
 //   t.drop()
-//   // console.log(t.nowmovingplace);
-//   // console.log(t.board);
+
 // }
 
 // t.board.splice(1,4)
-console.log(t.board);
-console.log(t.flashdropplace());
 // for (var i = 0; i < 20; i++) {
 // t.droptolast()
 // t.moveonboard()
 // }
+
+//変更イベントがある一覧
+//ピースが動いた時(move)回転した時(rotatel or rotater)
+//ライン消しが行われた時 (checkline)
+//新しいドロップが落ちてくる時
+//ピースが落ち切った時
+//ピースが落ち切った時に場合わけをする
+//もしもライン消しが行われていなかったら落ち切った部分だけを更新する
+//ライン消しが行われた場合は全てのボードを再描画する
+//ピースが落ち切った時にまずは落ち切ったときの様子を描画してそこでチェックラインをする
+//チェックラインを通れば画面全体を再描画、新規にピースを作成する時はピースの一部分を描画する

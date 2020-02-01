@@ -43,7 +43,8 @@ input.rotate{
 .holdboard{
     display: inline-block;
     width: 40px;
-    height:40px;;
+    height:40px;
+    border: solid 0.5px;
 }
 
 .test{

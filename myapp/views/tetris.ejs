@@ -17,12 +17,13 @@
 </style>
   </head>
   <body>
-    <a class=test href="javascript:tetris.movedraw([0,-1])"></a>
-    <a class=test2 href="javascript:tetris.movedraw([0,1])"></a>
+    <a class=test href="javascript:tetris.move([0,-1])"></a>
+    <a class=test2 href="javascript:tetris.move([0,1])"></a>
     <div id=controller>
       <a class=rotater href="javascript:tetris.droptolast()"></a>
-      <a class=rotatel href="javascript:tetris.rotateleft()"></a>
-        <a class=rotater href="javascript:tetris.rotateleft()"></a>
+      <a class=rotatel href=javascript:tetris.rotate("right")></a>
+        <a class=rotater href=javascript:tetris.rotate("left")></a>
+        <a class=rotater href=javascript:tetris.drawboard()></a>
 
     </div>
     <span class="hold">
@@ -46,11 +47,7 @@
   </script>
 <script type="text/javascript">
     tetris.createnewpeace(tetris.makenewplace.bind(tetris));
-    setInterval("draws()",700);
-    function draws(){
-      tetris.drop();
-      tetris.drawboard();
-    }
+    setInterval("tetris.drop()",700);
     // var t=0;
     // function add(){
     //   t++;
